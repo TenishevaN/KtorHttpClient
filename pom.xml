@@ -11,9 +11,17 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.code.style>official</kotlin.code.style>
-        <kotlin.compiler.jvmTarget>11</kotlin.compiler.jvmTarget>
-        <kotlin_version>1.8.0</kotlin_version>
-        <ktor_version>2.3.11</ktor_version>
+        <kotlin.compiler.jvmTarget>21</kotlin.compiler.jvmTarget>
+        <kotlin_version>1.9.23</kotlin_version>
+        <ktor_version>3.0.0</ktor_version>
+        <kotlin_maven_plugin_version>2.0.21</kotlin_maven_plugin_version>
+        <logback_version>1.2.11</logback_version>
+        <exec_maven_plugin_version>3.5.0</exec_maven_plugin_version>
+        <kotlinx_serialization_version>1.3.2</kotlinx_serialization_version>
+        <junit_jupiter_version>5.10.0</junit_jupiter_version>
+        <slf4j_api_version>1.7.32</slf4j_api_version>
+        <kotlin_test_junit_version>1.9.23</kotlin_test_junit_version>
+        <ktor_server_tests_jvm_version>2.3.12</ktor_server_tests_jvm_version>
     </properties>
 
     <repositories>
@@ -28,38 +36,9 @@
         <testSourceDirectory>src/test/kotlin</testSourceDirectory>
         <plugins>
             <plugin>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-maven-plugin</artifactId>
-                <version>2.0.20</version>
-                <executions>
-                    <execution>
-                        <id>compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>test-compile</id>
-                        <phase>test-compile</phase>
-                        <goals>
-                            <goal>test-compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
-            </plugin>
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.22.2</version>
-            </plugin>
-            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.2.1</version>
+                <version>${exec_maven_plugin_version}</version>
                 <configuration>
                     <mainClass>Application</mainClass>
                 </configuration>
@@ -67,7 +46,7 @@
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
-                <version>${kotlin_version}</version>
+                <version>${kotlin_maven_plugin_version}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -84,7 +63,7 @@
                     <dependency>
                         <groupId>org.jetbrains.kotlin</groupId>
                         <artifactId>kotlin-maven-serialization</artifactId>
-                        <version>${kotlin_version}</version>
+                        <version>${kotlin_maven_plugin_version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -163,41 +142,32 @@
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-serialization-json</artifactId>
-            <version>1.3.2</version>
+            <version>${kotlinx_serialization_version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.10.0</version>
+            <version>${junit_jupiter_version}</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>io.ktor</groupId>
             <artifactId>ktor-server-test-host</artifactId>
             <version>${ktor_version}</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>io.ktor</groupId>
             <artifactId>ktor-server-tests-jvm</artifactId>
-            <version>${ktor_version}</version>
+            <version>${ktor_server_tests_jvm_version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test-junit</artifactId>
-            <version>1.9.23</version>
+            <version>${kotlin_test_junit_version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx-coroutines-debug</artifactId>
-            <version>1.6.4</version>
-            <scope>test</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib</artifactId>
@@ -210,15 +180,18 @@
             <version>${kotlin_version}</version>
         </dependency>
 
+        <!-- SLF4J API -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j_api_version}</version>
+        </dependency>
+
+        <!-- Logback Classic (SLF4J Implementation) -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.2.11</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>1.2.11</version>
+            <version>${logback_version}</version>
         </dependency>
     </dependencies>
 
