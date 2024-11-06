@@ -1,6 +1,7 @@
 package com.ktor.solution
 
 import io.ktor.client.*
+import io.ktor.client.plugins.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
@@ -130,6 +131,11 @@ fun ApplicationTestBuilder.configureServerAndGetClient(): HttpClient {
                 prettyPrint = true
                 isLenient = true
             })
+        }
+        install(HttpTimeout) {
+            requestTimeoutMillis = 5000
+            connectTimeoutMillis = 5000
+            socketTimeoutMillis = 5000
         }
     }
     return client

@@ -124,6 +124,12 @@
 
         <dependency>
             <groupId>io.ktor</groupId>
+            <artifactId>ktor-client-plugins</artifactId>
+            <version>${ktor_version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.ktor</groupId>
             <artifactId>ktor-server-content-negotiation-jvm</artifactId>
             <version>${ktor_version}</version>
         </dependency>
@@ -192,6 +198,13 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback_version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.mockk</groupId>
+            <artifactId>mockk</artifactId>
+            <version>1.12.0</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
