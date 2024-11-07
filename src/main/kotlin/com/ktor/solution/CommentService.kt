@@ -1,20 +1,25 @@
 package com.ktor.solution
 
+import com.ktor.solution.Config.API_BASE_URL
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
+import io.ktor.http.*
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.decodeFromString
 
 class CommentService(private val client: HttpClient) {
-    private val logger: Logger = LoggerFactory.getLogger(CommentService::class.java)
-
-    suspend fun fetchComments(): HttpResponse {
-        return try {
-            client.get("${Config.API_BASE_URL}/comments")
+    suspend fun fetchCommentsByUserId(userId: Int): List<Comment>? {
+        try {
+            val response: HttpResponse = client.get("$API_BASE_URL/comments")
+            if (response.status == HttpStatusCode.OK) {
+                val responseBody: String = response.bodyAsText()
+                val comments: List<Comment> = Json.decodeFromString(responseBody)
+                return comments.filter { it.postId == userId }
+            }
         } catch (e: Exception) {
-            logger.error("Error fetching comments: ${e.localizedMessage}")
-            throw e
+            println("Error fetching comments: ${e.localizedMessage}")
         }
+        return null
     }
 }
