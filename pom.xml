@@ -14,6 +14,11 @@
         <kotlin.compiler.jvmTarget>11</kotlin.compiler.jvmTarget>
         <kotlin_version>1.8.0</kotlin_version>
         <ktor_version>2.3.11</ktor_version>
+        <kotlin_test_junit_version>1.9.23</kotlin_test_junit_version>
+        <junit_jupiter_version>5.10.0</junit_jupiter_version>
+        <kotlin_maven_plugin_version>2.0.20</kotlin_maven_plugin_version>
+        <exec_maven_plugin_version>1.2.1</exec_maven_plugin_version>
+        <kotlinx_serialization_json_version>1.3.2</kotlinx_serialization_json_version>
     </properties>
 
     <repositories>
@@ -30,7 +35,7 @@
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
-                <version>2.0.20</version>
+                <version>${kotlin_maven_plugin_version}</version>
                 <executions>
                     <execution>
                         <id>compile</id>
@@ -49,17 +54,9 @@
                 </executions>
             </plugin>
             <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
-            </plugin>
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.22.2</version>
-            </plugin>
-            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.2.1</version>
+                <version>${exec_maven_plugin_version}</version>
                 <configuration>
                     <mainClass>Application</mainClass>
                 </configuration>
@@ -163,12 +160,12 @@
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-serialization-json</artifactId>
-            <version>1.3.2</version>
+            <version>${kotlinx_serialization_json_version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.10.0</version>
+            <version>${junit_jupiter_version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -185,16 +182,11 @@
             <version>${ktor_version}</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test-junit</artifactId>
-            <version>1.9.23</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx-coroutines-debug</artifactId>
-            <version>1.6.4</version>
+            <version>${kotlin_test_junit_version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -208,17 +200,6 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
             <version>${kotlin_version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.11</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>1.2.11</version>
         </dependency>
     </dependencies>
 
